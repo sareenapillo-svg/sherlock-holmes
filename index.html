@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>221B | Sherlock Holmes Case Files</title>
+  <meta name="description" content="Sherlock Holmes themed interactive case archives.">
+
+  <!-- Google Fonts: Pirata One (gothic), Michroma (HUD), Special Elite (typewriter), Archivo Black, JetBrains Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Michroma&family=Pirata+One&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Global Animated Film-Grain Overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- Full-Screen Intro Loader -->
+  <div id="loader" class="loader-screen" role="dialog" aria-modal="true" aria-label="Platform 221B Loading Screen">
+    <!-- Local grain layer for loader -->
+    <div class="loader-grain" aria-hidden="true"></div>
+
+    <!-- Background platform signage panels on each side of the card -->
+    <div class="loader-backdrop" aria-hidden="true">
+      <div class="platform-panel panel-left">
+        <div class="panel-inner-line"></div>
+        <div class="panel-tag">LINE 221B // WESTBOUND</div>
+      </div>
+      <div class="platform-panel panel-right">
+        <div class="panel-inner-line"></div>
+        <div class="panel-tag">METROPOLITAN // ARCHIVE</div>
+      </div>
+    </div>
+
+    <!-- Center Tall Dark Card -->
+    <div class="loader-card" id="loader-card">
+      <!-- Card Header: Two Tiny Mono Labels -->
+      <div class="loader-card-header">
+        <span class="mono-label">PLATFORM 221B</span>
+        <span class="mono-counter" id="loader-counter">0%</span>
+      </div>
+
+      <!-- Card Body: Huge Stacked Cream Headline in Archivo Black -->
+      <div class="loader-card-body">
+        <h1 class="loader-headline">
+          <span class="headline-line">NEXT</span>
+          <span class="headline-line">STOP</span>
+          <span class="headline-line headline-accent">221B</span>
+          <span class="headline-line">BAKER</span>
+          <span class="headline-line">STREET</span>
+        </h1>
+      </div>
+
+      <!-- Card Sub-Footer -->
+      <div class="loader-card-meta">
+        <span class="card-id-code">SEC // 221B-HQ</span>
+        <span class="card-status-dot"></span>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Bottom-Left Mono Number & Skip Hint -->
+    <div class="loader-bottom-bar">
+      <div class="loader-serial-number">7321</div>
+      <div class="loader-skip-hint">[ PRESS ANY KEY OR CLICK TO SKIP ]</div>
+    </div>
+
+    <!-- Bottom Edge Caution Tape (Scrolling Sideways) -->
+    <div class="caution-tape-strip" aria-hidden="true"></div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <!-- Left Logo & Mono Case Code -->
+      <a href="#hero" class="nav-brand" aria-label="221B Home">
+        <span class="brand-title">221B</span>
+        <span class="brand-subtitle">CASE FILES / 2026</span>
+      </a>
+
+      <!-- Center Links -->
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active" data-target="hero">Home</a></li>
+        <li><a href="#case" class="nav-link" data-target="case">Cases</a></li>
+        <li><a href="#evidence" class="nav-link" data-target="evidence">Evidence</a></li>
+        <li><a href="#footer" class="nav-link" data-target="footer">Contact</a></li>
+      </ul>
+
+      <!-- Right Action Sticker Button -->
+      <div class="nav-action">
+        <button class="btn-sticker" id="open-case-btn" type="button" aria-label="Open the case">
+          OPEN THE CASE
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Right-Side Vertical Progress Indicator -->
+  <aside class="progress-indicator" aria-label="Section Progress">
+    <div class="progress-label" id="progress-label" aria-live="polite">HOME</div>
+    <div class="progress-track" role="tablist" aria-label="Section selector">
+      <button class="progress-dot active" data-target="hero" data-name="HOME" role="tab" aria-selected="true" aria-label="Section 1: Home">
+        <span class="dot-core"></span>
+      </button>
+      <button class="progress-dot" data-target="case" data-name="CASES" role="tab" aria-selected="false" aria-label="Section 2: Cases">
+        <span class="dot-core"></span>
+      </button>
+      <button class="progress-dot" data-target="evidence" data-name="EVIDENCE" role="tab" aria-selected="false" aria-label="Section 3: Evidence">
+        <span class="dot-core"></span>
+      </button>
+      <button class="progress-dot" data-target="footer" data-name="CONTACT" role="tab" aria-selected="false" aria-label="Section 4: Contact">
+        <span class="dot-core"></span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Full-Screen #intro Section (Plays after loader finishes) -->
+  <section id="intro" class="intro-screen" aria-label="Cinematic Case Intro">
+    <!-- 7 Stacked Scene Layers (position absolute, inset 0), one per scene: scene1 to scene7 -->
+    <div class="intro-scene scene-1" id="scene1" data-scene="1">
+      <!-- CRT Power-On Slit and Flash Overlay -->
+      <div class="crt-turnon-stage" id="crt-turnon-stage" aria-hidden="true">
+        <div class="crt-beam-slit" id="crt-beam-slit"></div>
+        <div class="crt-flash-glow" id="crt-flash-glow"></div>
+      </div>
+
+      <!-- Scene 1 Background Street Silhouette (Semi-realistic engraving style) -->
+      <div class="scene1-backdrop">
+        <svg class="scene1-silhouettes-svg" viewBox="0 0 1600 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sc1GroundGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#121418" />
+              <stop offset="100%" stop-color="#070809" />
+            </linearGradient>
+            <linearGradient id="sc1BldgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#181a20" />
+              <stop offset="100%" stop-color="#0c0d10" />
+            </linearGradient>
+          </defs>
+          <!-- Distant Victorian London chimneys and spires in dark noir silhouette -->
+          <path d="M0,900 L0,550 L80,550 L80,480 L120,480 L120,550 L240,550 L240,420 L270,390 L300,420 L300,550 L460,550 L460,490 L520,490 L520,550 L680,550 L680,440 L700,440 L700,320 L720,290 L740,320 L740,550 L860,550 L860,470 L910,470 L910,550 L1080,550 L1080,410 L1120,380 L1160,410 L1160,550 L1320,550 L1320,460 L1380,460 L1380,550 L1600,550 L1600,900 Z" fill="url(#sc1BldgGrad)" opacity="0.6" />
+          <!-- Wet cobblestone curb line -->
+          <path d="M0,900 L0,740 Q400,720 800,740 T1600,730 L1600,900 Z" fill="url(#sc1GroundGrad)" />
+        </svg>
+      </div>
+
+      <!-- Bottom Left: Small Michroma Label with Blinking Cyan Cursor -->
+      <div class="scene1-location-card" id="scene1-location">
+        <div class="scene1-hud-indicator">
+          <span class="hud-cyan-pip"></span>
+          <span class="hud-meta-code">LOC // 51.5237° N, 0.1585° W</span>
+        </div>
+        <div class="scene1-typewriter-row">
+          <span class="scene1-text" id="scene1-text"></span>
+          <span class="scene1-cyan-cursor" id="scene1-cursor" aria-hidden="true">_</span>
+        </div>
+      </div>
+    </div>
+    <!-- Scene 2: "THE GAME IS AFOOT." Pirata One Gothic Quote with Cyan HUD Brackets & Faint Gas Lamp -->
+    <div class="intro-scene scene-2" id="scene2" data-scene="2">
+      <!-- Background Faint Flickering Gas Lamp in the Fog -->
+      <div class="scene2-lamp-backdrop" aria-hidden="true">
+        <div class="scene2-gas-lamp" id="scene2-gas-lamp">
+          <div class="scene2-lamp-glow" id="scene2-lamp-glow"></div>
+          <div class="scene2-lamp-core"></div>
+          <!-- Faint Victorian lantern head silhouette -->
+          <svg class="scene2-lamp-post-svg" viewBox="0 0 100 240" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,40 70,40 62,110 38,110" fill="rgba(255, 106, 31, 0.15)" stroke="#1a1c22" stroke-width="2.5" />
+            <polygon points="26,40 74,40 60,18 40,18" fill="#14161a" />
+            <rect x="44,5" width="12" height="13" fill="#14161a" />
+            <polygon points="50,0 46,5 54,5" fill="#22262d" />
+            <rect x="46,110" width="8" height="130" fill="#14161a" />
+            <rect x="25,140" width="50" height="4" fill="#1a1c22" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Centered HUD Frame and Quote Container -->
+      <div class="scene2-quote-wrapper" id="scene2-quote-wrapper">
+        <!-- Soft Orange Ambient Glow behind text -->
+        <div class="scene2-text-glow" id="scene2-text-glow" aria-hidden="true"></div>
+
+        <!-- Thin Cyan HUD Corner Brackets (Draw in) -->
+        <svg class="scene2-hud-frame-svg" id="scene2-hud-brackets" viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Top-Left Corner Bracket -->
+          <path class="hud-corner-bracket tl-bracket" d="M 0 45 L 0 0 L 45 0" stroke="#4FD1D9" stroke-width="2" />
+          <!-- Top-Right Corner Bracket -->
+          <path class="hud-corner-bracket tr-bracket" d="M 755 0 L 800 0 L 800 45" stroke="#4FD1D9" stroke-width="2" />
+          <!-- Bottom-Left Corner Bracket -->
+          <path class="hud-corner-bracket bl-bracket" d="M 0 275 L 0 320 L 45 320" stroke="#4FD1D9" stroke-width="2" />
+          <!-- Bottom-Right Corner Bracket -->
+          <path class="hud-corner-bracket br-bracket" d="M 755 320 L 800 320 L 800 275" stroke="#4FD1D9" stroke-width="2" />
+        </svg>
+
+        <!-- Tiny Michroma Labels in the Corners -->
+        <div class="scene2-hud-labels" id="scene2-hud-labels" aria-hidden="true">
+          <span class="scene2-corner-label top-left" id="scene2-label-tl">CASE FILE 221B</span>
+          <span class="scene2-corner-label top-right" id="scene2-label-tr">SYS // SURVEILLANCE</span>
+          <span class="scene2-corner-label bottom-left" id="scene2-label-bl">REC // EVIDENCE ARCHIVE</span>
+          <span class="scene2-corner-label bottom-right" id="scene2-label-br">51.5237° N, 0.1585° W</span>
+        </div>
+
+        <!-- Large Pirata One Gothic Headline: "THE GAME IS AFOOT." -->
+        <div class="scene2-quote-content" id="scene2-quote-content">
+          <h2 class="scene2-gothic-quote" id="scene2-quote">THE GAME IS AFOOT.</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Scene 3: Baker Street at Night (4 Depth Layers, receding townhouses, staggered gas lamps, enamel sign) -->
+    <div class="intro-scene scene-3" id="scene3" data-scene="3">
+      <!-- SVG Defs for Engraving Halftone Patterns & Glows -->
+      <svg class="scene-defs-svg" width="0" height="0" aria-hidden="true">
+        <defs>
+          <!-- Fine Engraving Halftone Texture Pattern -->
+          <pattern id="halftoneEngrave" width="6" height="6" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="6" x2="6" y2="0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" />
+            <circle cx="3" cy="3" r="1" fill="rgba(0,0,0,0.35)" />
+          </pattern>
+          <pattern id="cobbleTexture" width="16" height="8" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="14" height="6" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(0,0,0,0.4)" stroke-width="1" />
+          </pattern>
+          <!-- Lamp Radiant Glow Gradient -->
+          <radialGradient id="bakerLampGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FF6A1F" stop-opacity="0.9" />
+            <stop offset="30%" stop-color="#FF6A1F" stop-opacity="0.4" />
+            <stop offset="70%" stop-color="#FF6A1F" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="#FF6A1F" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+
+      <!-- 4 Depth Layers for Baker Street Perspective -->
+      <!-- Depth Layer 1: Distant Vanishing Point & Deep Sky -->
+      <div class="street-depth-layer depth-1-distant" id="baker-depth-1">
+        <div class="baker-sky-skyline"></div>
+      </div>
+
+      <!-- Depth Layer 2: Mid-Far Receding Townhouses & Distant Lamps -->
+      <div class="street-depth-layer depth-2-mid-far" id="baker-depth-2">
+        <svg class="baker-townhouses-far-svg" viewBox="0 0 1600 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left Far Townhouse Row Silhouette -->
+          <path d="M0,900 L0,280 L420,380 L680,410 L800,415 L800,900 Z" fill="#111317" />
+          <path d="M0,280 L420,380 L680,410 L800,415 L800,430 L0,300 Z" fill="#181a20" opacity="0.6" />
+          <!-- Right Far Townhouse Row Silhouette -->
+          <path d="M1600,900 L1600,280 L1180,380 L920,410 L800,415 L800,900 Z" fill="#111317" />
+          <path d="M1600,280 L1180,380 L920,410 L800,415 L800,430 L1600,300 Z" fill="#181a20" opacity="0.6" />
+        </svg>
+
+        <!-- Distant Pair of Lamps (Pair 1) -->
+        <div class="baker-lamp-unit lamp-far-left" id="lamp-1">
+          <div class="baker-lamp-aura"></div>
+          <div class="baker-lamp-flame"></div>
+          <div class="baker-lamp-reflection"></div>
+        </div>
+        <div class="baker-lamp-unit lamp-far-right" id="lamp-2">
+          <div class="baker-lamp-aura"></div>
+          <div class="baker-lamp-flame"></div>
+          <div class="baker-lamp-reflection"></div>
+        </div>
+      </div>
+
+      <!-- Depth Layer 3: Mid-Near Townhouses, Corner Sign & Mid Lamps -->
+      <div class="street-depth-layer depth-3-mid-near" id="baker-depth-3">
+        <svg class="baker-townhouses-near-svg" viewBox="0 0 1600 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left Victorian Townhouses with Windows, Cornices, Chimneys -->
+          <path d="M0,900 L0,120 L80,120 L80,95 L110,95 L110,120 L280,180 L280,150 L310,150 L310,190 L520,260 L520,230 L550,230 L550,270 L720,340 L720,900 Z" fill="#0d0e12" />
+          <path d="M0,900 L0,120 L80,120 L80,95 L110,95 L110,120 L280,180 L280,150 L310,150 L310,190 L520,260 L520,230 L550,230 L550,270 L720,340 L720,900 Z" fill="url(#halftoneEngrave)" opacity="0.8" />
+          <!-- Chimney Pots on Left -->
+          <rect x="85" y="75" width="10" height="20" fill="#16181f" />
+          <rect x="98" y="75" width="10" height="20" fill="#16181f" />
+          <rect x="288" y="130" width="10" height="20" fill="#16181f" />
+          <!-- Classical Receding Cornice Molding -->
+          <line x1="0" y1="150" x2="720" y2="350" stroke="#1d2028" stroke-width="3" />
+          <!-- Dim Unlit Windows on Left Row -->
+          <g fill="#171920" stroke="#090a0d" stroke-width="2">
+            <polygon points="120,240 160,255 160,330 120,310" />
+            <polygon points="220,275 250,285 250,345 220,330" />
+            <polygon points="340,320 365,328 365,370 340,360" />
+          </g>
+
+          <!-- Right Victorian Townhouses -->
+          <path d="M1600,900 L1600,120 L1520,120 L1520,95 L1490,95 L1490,120 L1320,180 L1320,150 L1290,150 L1290,190 L1080,260 L1080,230 L1050,230 L1050,270 L880,340 L880,900 Z" fill="#0d0e12" />
+          <path d="M1600,900 L1600,120 L1520,120 L1520,95 L1490,95 L1490,120 L1320,180 L1320,150 L1290,150 L1290,190 L1080,260 L1080,230 L1050,230 L1050,270 L880,340 L880,900 Z" fill="url(#halftoneEngrave)" opacity="0.8" />
+          <!-- Chimney Pots on Right -->
+          <rect x="1502" y="75" width="10" height="20" fill="#16181f" />
+          <rect x="1302" y="130" width="10" height="20" fill="#16181f" />
+          <!-- Right Cornice Line -->
+          <line x1="1600" y1="150" x2="880" y2="350" stroke="#1d2028" stroke-width="3" />
+          <!-- Dim Unlit Windows on Right Row -->
+          <g fill="#171920" stroke="#090a0d" stroke-width="2">
+            <polygon points="1480,240 1440,255 1440,330 1480,310" />
+            <polygon points="1380,275 1350,285 1350,345 1380,330" />
+            <polygon points="1260,320 1235,328 1235,370 1260,360" />
+          </g>
+        </svg>
+
+        <!-- Mid Pair of Lamps (Pair 2) -->
+        <div class="baker-lamp-unit lamp-mid-left" id="lamp-3">
+          <div class="baker-lamp-aura"></div>
+          <div class="baker-lamp-flame"></div>
+          <div class="baker-lamp-reflection"></div>
+        </div>
+        <div class="baker-lamp-unit lamp-mid-right" id="lamp-4">
+          <div class="baker-lamp-aura"></div>
+          <div class="baker-lamp-flame"></div>
+          <div class="baker-lamp-reflection"></div>
+        </div>
+
+        <!-- "BAKER STREET" Enamel-Style Corner Street Sign -->
+        <div class="baker-street-sign-box" id="baker-street-sign">
+          <div class="enamel-sign-plate">
+            <span class="sign-text">BAKER STREET</span>
+            <span class="sign-sub">W.1.</span>
+          </div>
+          <div class="sign-cyan-coordinate">
+            <span class="hud-cyan-pip"></span>
+            <span class="hud-coord-text">51.5237° N, 0.1585° W</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depth Layer 4: Foreground Street & Foreground Gas Lamps -->
+      <div class="street-depth-layer depth-4-foreground" id="baker-depth-4">
+        <!-- Wet Cobblestone Ground with Vanishing Perspective & Reflection Sheen -->
+        <svg class="baker-cobblestone-svg" viewBox="0 0 1600 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Street Pavement Polygon -->
+          <polygon points="800,410 700,900 900,900" fill="#08080a" />
+          <polygon points="0,900 700,900 800,410 0,550" fill="#090a0d" />
+          <polygon points="1600,900 900,900 800,410 1600,550" fill="#090a0d" />
+          <!-- Wet Sheen Cobblestone Texture Overlay -->
+          <polygon points="0,900 1600,900 800,410" fill="url(#cobbleTexture)" opacity="0.6" />
+          <!-- Radiating Perspective Guide Grooves -->
+          <line x1="800" y1="410" x2="150" y2="900" stroke="#14161c" stroke-width="2" />
+          <line x1="800" y1="410" x2="450" y2="900" stroke="#14161c" stroke-width="2.5" />
+          <line x1="800" y1="410" x2="1150" y2="900" stroke="#14161c" stroke-width="2.5" />
+          <line x1="800" y1="410" x2="1450" y2="900" stroke="#14161c" stroke-width="2" />
+        </svg>
+
+        <!-- Foreground Pair of Victorian Ornate Gas Lamps (Pair 3) -->
+        <div class="baker-lamp-unit lamp-near-left" id="lamp-5">
+          <svg class="near-lamp-post-svg" viewBox="0 0 120 400" xmlns="http://www.w3.org/2000/svg">
+            <rect x="54" y="100" width="12" height="300" fill="#121317" />
+            <rect x="25" y="150" width="70" height="6" rx="2" fill="#1b1d24" />
+            <polygon points="40,30 80,30 70,100 50,100" fill="rgba(255, 106, 31, 0.1)" stroke="#121317" stroke-width="3" />
+            <polygon points="36,30 84,30 68,10 52,10" fill="#1b1d24" />
+          </svg>
+          <div class="baker-lamp-aura near-aura"></div>
+          <div class="baker-lamp-flame near-flame"></div>
+          <div class="baker-lamp-reflection near-reflection"></div>
+        </div>
+
+        <div class="baker-lamp-unit lamp-near-right" id="lamp-6">
+          <svg class="near-lamp-post-svg" viewBox="0 0 120 400" xmlns="http://www.w3.org/2000/svg">
+            <rect x="54" y="100" width="12" height="300" fill="#121317" />
+            <rect x="25" y="150" width="70" height="6" rx="2" fill="#1b1d24" />
+            <polygon points="40,30 80,30 70,100 50,100" fill="rgba(255, 106, 31, 0.1)" stroke="#121317" stroke-width="3" />
+            <polygon points="36,30 84,30 68,10 52,10" fill="#1b1d24" />
+          </svg>
+          <div class="baker-lamp-aura near-aura"></div>
+          <div class="baker-lamp-flame near-flame"></div>
+          <div class="baker-lamp-reflection near-reflection"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 4: Camera moves forward down street, Hansom cab crosses, Sherlock Holmes walks under lamp -->
+    <div class="intro-scene scene-4" id="scene4" data-scene="4">
+      <!-- Mid Layer: Horse-Drawn Hansom Cab crossing right-to-left -->
+      <div class="scene4-cab-track" id="scene4-cab-track">
+        <div class="hansom-cab-unit" id="hansom-cab">
+          <svg class="hansom-cab-svg" viewBox="0 0 380 180" xmlns="http://www.w3.org/2000/svg">
+            <!-- Horse Silhouette (Trotting posture) -->
+            <path d="M60,110 L75,110 L85,85 L105,75 L125,75 L145,95 L145,115 L140,150 L130,150 L135,115 L105,115 L95,150 L85,150 L95,105 L65,105 Z" fill="#08090a" />
+            <!-- Horse Head & Neck -->
+            <path d="M40,55 C40,45 55,40 65,45 C75,50 80,65 85,85 L65,85 Z" fill="#08090a" />
+            <!-- Harness & Shafts -->
+            <line x1="60" y1="75" x2="160" y2="105" stroke="#121418" stroke-width="2" />
+            <!-- Hansom Cab Body -->
+            <path d="M160,65 L220,65 C230,65 240,75 240,90 L240,130 L170,130 C160,120 155,100 160,65 Z" fill="#070809" />
+            <!-- Elevated Rear Driver Dickey Seat -->
+            <rect x="235" y="45" width="25" height="15" fill="#070809" />
+            <!-- Driver Silhouette with Top Hat & Reins -->
+            <circle cx="245" cy="35" r="7" fill="#070809" />
+            <rect x="240" y="24" width="10" height="8" fill="#070809" />
+            <!-- Cab Large Two Wheels (Spoked) -->
+            <circle cx="205" cy="130" r="32" fill="none" stroke="#14161c" stroke-width="3" />
+            <circle cx="205" cy="130" r="4" fill="#14161c" />
+            <!-- Faint Carriage Lantern with Soft Orange Glow -->
+            <rect x="150" y="80" width="8" height="12" rx="1" fill="#FF6A1F" />
+            <circle cx="154" cy="86" r="16" fill="url(#bakerLampGlow)" opacity="0.8" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Foreground Layer: Tall Faceless Silhouette of Sherlock Holmes walking left-to-right -->
+      <div class="scene4-sherlock-track" id="scene4-sherlock-track">
+        <div class="sherlock-figure" id="sherlock-figure">
+          <!-- Orange Rim Light & Silhouette Vector -->
+          <svg class="sherlock-svg" viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="rimGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="-3" dy="0" stdDeviation="5" flood-color="#FF6A1F" flood-opacity="0.65" />
+              </filter>
+            </defs>
+            <g filter="url(#rimGlowFilter)">
+              <!-- Deerstalker Cap (Peaks front & rear, tied earflaps) -->
+              <path d="M90,30 C75,30 65,42 65,55 L135,55 C135,42 125,30 110,30 Z" fill="#07080a" />
+              <!-- Front and rear peak visors -->
+              <path d="M55,55 L145,55 L135,50 L65,50 Z" fill="#07080a" stroke="rgba(255,106,31,0.5)" stroke-width="1.2" />
+              <!-- Faceless Head Contour -->
+              <path d="M72,55 C72,70 82,85 100,85 C118,85 125,70 125,55 Z" fill="#07080a" />
+              <!-- Inverness Long Cape & Striding Overcoat Silhouette -->
+              <path d="M60,95 L140,95 L155,170 L135,175 L155,340 L130,340 L115,240 L105,340 L80,340 L90,210 L50,175 L38,170 Z" fill="#07080a" stroke="rgba(255,106,31,0.4)" stroke-width="1.2" />
+              <!-- Billowing Capelet Wing -->
+              <path d="M60,95 C40,130 45,170 50,195 L100,165 Z" fill="#090a0d" />
+            </g>
+
+            <!-- Briar Pipe with Glowing Orange Ember -->
+            <path d="M122,70 L140,75 L142,88 L148,88 L148,70 L138,67 Z" fill="#090a0d" />
+            <!-- Orange Pipe Ember -->
+            <circle cx="145" cy="72" r="3.5" fill="#FF9E54" />
+            <circle cx="145" cy="72" r="9" fill="url(#bakerLampGlow)" />
+            <!-- Thin Wispy Smoke Trail -->
+            <path class="smoke-trail-path" d="M145,70 Q150,55 142,42 T155,20 T148,5" fill="none" stroke="rgba(237, 230, 214, 0.45)" stroke-width="1.75" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="intro-scene scene-5" id="scene5" data-scene="5"></div>
+    <div class="intro-scene scene-6" id="scene6" data-scene="6"></div>
+    <div class="intro-scene scene-7" id="scene7" data-scene="7"></div>
+
+    <!-- Persistent Atmospheric Layer (Fog & Rain drifting across all scenes, adjustable opacity) -->
+    <div id="intro-atmosphere" class="intro-atmosphere" aria-hidden="true">
+      <!-- 4 full-width layers of blurred grey fog gradients moving at different speeds -->
+      <div class="persistent-fog-layer fog-layer-1"></div>
+      <div class="persistent-fog-layer fog-layer-2"></div>
+      <div class="persistent-fog-layer fog-layer-3"></div>
+      <div class="persistent-fog-layer fog-layer-4"></div>
+      <!-- Subtle fog texture -->
+      <div class="persistent-fog-texture"></div>
+      <!-- Faint rain streaks at very low opacity -->
+      <div class="persistent-rain-layer"></div>
+    </div>
+
+    <!-- Permanent Overlay on #intro: Film grain, subtle horizontal CRT scanlines, and slight flicker -->
+    <div class="intro-permanent-overlay" aria-hidden="true">
+      <div class="intro-grain-layer"></div>
+      <div class="intro-scanlines-layer"></div>
+    </div>
+
+    <!-- HUD Controls on #intro: Sound Toggle & Skip Link -->
+    <div class="intro-hud" aria-label="Intro Navigation & Controls">
+      <!-- Top Left: Sound Toggle (Muted by default) -->
+      <div class="intro-hud-sound">
+        <button id="sound-toggle-btn" class="hud-sound-toggle" type="button" aria-label="Toggle Audio" aria-pressed="false">
+          <span class="hud-label-mono">AUDIO //</span>
+          <span id="sound-status-text" class="hud-status-mono">MUTED</span>
+          <span class="hud-sound-led" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <!-- Top Right: HUD Analysing Tag (using --cyan for HUD tag) -->
+      <div class="intro-hud-analysing" aria-hidden="true">
+        <span class="hud-cyan-pulse"></span>
+        <span class="hud-cyan-text">ANALYSING // 221B SEQUENCE</span>
+      </div>
+
+      <!-- Bottom Right: "SKIP INTRO" mono link -->
+      <div class="intro-hud-skip">
+        <button id="skip-intro-btn" class="hud-skip-mono" type="button" aria-label="Skip intro to main section">
+          SKIP INTRO [ESC] &gt;&gt;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placeholder #main Section (Revealed after intro) -->
+  <main id="main" class="main-section" aria-label="Main Case Dossier">
+    <div class="main-placeholder-wrapper">
+      <div class="main-hud-badge">
+        <span class="hud-cyan-dot"></span>
+        <span class="hud-cyan-code">CLASSIFIED // ARCHIVE 221B</span>
+      </div>
+      <h1 class="main-gothic-title">Baker Street Dossier</h1>
+      <p class="main-typewriter-text">
+        "It is a capital mistake to theorise before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts."
+      </p>
+      <div class="main-hud-meta">
+        <span class="hud-meta-tag">INVESTIGATION ACTIVE</span>
+        <span class="hud-meta-sep">/</span>
+        <span class="hud-meta-tag">METROPOLITAN CRIME REGISTER 2026</span>
+      </div>
+    </div>
+
+    <!-- Empty Sections for Case Files & Evidence -->
+    <section id="case" class="section section-case" data-section-name="CASES"></section>
+    <section id="evidence" class="section section-evidence" data-section-name="EVIDENCE"></section>
+  </main>
+
+  <!-- Empty Footer Section -->
+  <footer id="footer" class="section section-footer" data-section-name="CONTACT"></footer>
+
+  <!-- GSAP & ScrollTrigger from cdnjs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
