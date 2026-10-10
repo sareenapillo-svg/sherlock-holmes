@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>221B | Sherlock Holmes Case Files</title>
-  <meta name="description" content="Sherlock Holmes themed interactive case archives.">
+  <title>Azure Alibi</title>
+  <meta name="description" content="Azure Alibi - Digital detective board for the missing sapphire case archives.">
 
   <!-- Google Fonts: Pirata One (gothic), Michroma (HUD), Special Elite (typewriter), Archivo Black, JetBrains Mono, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,41 +76,38 @@
     <nav class="navbar" aria-label="Main Navigation">
       <!-- Left Logo & Mono Case Code -->
       <a href="#hero" class="nav-brand" aria-label="221B Home">
-        <span class="brand-title">221B</span>
+        <span class="brand-title">AZURE ALIBI</span>
         <span class="brand-subtitle">CASE FILES / 2026</span>
       </a>
 
       <!-- Center Links -->
       <ul class="nav-links">
-        <li><a href="#hero" class="nav-link active" data-target="hero">Home</a></li>
-        <li><a href="#case" class="nav-link" data-target="case">Cases</a></li>
-        <li><a href="#evidence" class="nav-link" data-target="evidence">Evidence</a></li>
-        <li><a href="#footer" class="nav-link" data-target="footer">Contact</a></li>
+        <li><a href="#hero" class="nav-link active" data-target="hero">CASE BOARD</a></li>
+        <li><a href="#suspects" class="nav-link" data-target="suspects">SUSPECTS</a></li>
+        <li><a href="#deduction" class="nav-link" data-target="deduction">DEDUCTION</a></li>
       </ul>
 
-      <!-- Right Action Sticker Button -->
+      <!-- Right Action Status Chip -->
       <div class="nav-action">
-        <button class="btn-sticker" id="open-case-btn" type="button" aria-label="Open the case">
-          OPEN THE CASE
-        </button>
+        <div class="nav-status-chip" id="nav-case-status">
+          <span class="hud-cyan-pip"></span>
+          <span id="nav-status-label" class="nav-status-text">STATUS: OPEN</span>
+        </div>
       </div>
     </nav>
   </header>
 
   <!-- Right-Side Vertical Progress Indicator -->
   <aside class="progress-indicator" aria-label="Section Progress">
-    <div class="progress-label" id="progress-label" aria-live="polite">HOME</div>
+    <div class="progress-label" id="progress-label" aria-live="polite">CASE BOARD</div>
     <div class="progress-track" role="tablist" aria-label="Section selector">
-      <button class="progress-dot active" data-target="hero" data-name="HOME" role="tab" aria-selected="true" aria-label="Section 1: Home">
+      <button class="progress-dot active" data-target="hero" data-name="CASE BOARD" role="tab" aria-selected="true" aria-label="Section 1: Case Board">
         <span class="dot-core"></span>
       </button>
-      <button class="progress-dot" data-target="case" data-name="CASES" role="tab" aria-selected="false" aria-label="Section 2: Cases">
+      <button class="progress-dot" data-target="suspects" data-name="SUSPECTS" role="tab" aria-selected="false" aria-label="Section 2: Suspects">
         <span class="dot-core"></span>
       </button>
-      <button class="progress-dot" data-target="evidence" data-name="EVIDENCE" role="tab" aria-selected="false" aria-label="Section 3: Evidence">
-        <span class="dot-core"></span>
-      </button>
-      <button class="progress-dot" data-target="footer" data-name="CONTACT" role="tab" aria-selected="false" aria-label="Section 4: Contact">
+      <button class="progress-dot" data-target="deduction" data-name="DEDUCTION" role="tab" aria-selected="false" aria-label="Section 3: Deduction">
         <span class="dot-core"></span>
       </button>
     </div>
@@ -428,9 +425,275 @@
         </div>
       </div>
     </div>
-    <div class="intro-scene scene-5" id="scene5" data-scene="5"></div>
-    <div class="intro-scene scene-6" id="scene6" data-scene="6"></div>
-    <div class="intro-scene scene-7" id="scene7" data-scene="7"></div>
+    <!-- Scene 5: Townhouse Front, Brass 221B Plate with Shine, Lit Upstairs Window with Violin Player Silhouette -->
+    <div class="intro-scene scene-5" id="scene5" data-scene="5">
+      <!-- Townhouse Facade Container -->
+      <div class="scene5-facade-container" id="scene5-facade">
+        <!-- SVG Townhouse Front: Dark door, brass plate, steps, engraving texture, window frame -->
+        <svg class="scene5-townhouse-svg" viewBox="0 0 1200 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Gold/Brass Metallic Gradient for 221B Plate -->
+            <linearGradient id="brassPlateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4AF37" />
+              <stop offset="30%" stop-color="#F3E5AB" />
+              <stop offset="65%" stop-color="#AA820A" />
+              <stop offset="100%" stop-color="#554105" />
+            </linearGradient>
+
+            <!-- Warm Window Glow Gradient -->
+            <radialGradient id="windowWarmGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FF9E54" stop-opacity="1" />
+              <stop offset="50%" stop-color="#FF6A1F" stop-opacity="0.85" />
+              <stop offset="85%" stop-color="#B83A00" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#14161a" stop-opacity="0.95" />
+            </radialGradient>
+          </defs>
+
+          <!-- Townhouse Dark Stone Facade & Engraving Fill -->
+          <rect x="0" y="0" width="1200" height="900" fill="#0d0e12" />
+          <rect x="0" y="0" width="1200" height="900" fill="url(#halftoneEngrave)" opacity="0.65" />
+
+          <!-- Architectural Moldings -->
+          <g stroke="#1a1c24" stroke-width="1.5" opacity="0.7">
+            <line x1="0" y1="180" x2="1200" y2="180" stroke-width="4" stroke="#222530" />
+            <line x1="0" y1="520" x2="1200" y2="520" stroke-width="4" stroke="#222530" />
+            <!-- Vertical Pilasters / Pillars around Doorway -->
+            <rect x="420" y="520" width="360" height="380" fill="#090a0d" stroke="#1c1f28" stroke-width="2" />
+          </g>
+
+          <!-- Upstairs Lit Window Arc & Frame -->
+          <g id="scene5-window-group">
+            <!-- Archway Molding above Window -->
+            <path d="M 480 180 C 480 100 720 100 720 180 Z" fill="#14161e" stroke="#262936" stroke-width="3" />
+            <!-- Lit Window Panes Background -->
+            <rect x="490" y="180" width="220" height="290" rx="4" fill="url(#windowWarmGlow)" />
+            
+            <!-- Sheer Curtain Silhouette overlay -->
+            <path d="M 490 180 Q 550 240 490 320 L 490 180 Z" fill="rgba(20, 22, 28, 0.45)" />
+            <path d="M 710 180 Q 650 240 710 320 L 710 180 Z" fill="rgba(20, 22, 28, 0.45)" />
+
+            <!-- Violin Player Silhouette Behind Curtain -->
+            <g id="scene5-violinist-g">
+              <path d="M570 330 C565 290 560 260 575 230 C585 210 615 210 625 230 C640 260 635 290 630 330 Z" fill="#090a0d" />
+              <circle cx="600" cy="225" r="18" fill="#090a0d" />
+              <path d="M575 235 Q550 240 560 255 Q570 265 590 245 Z" fill="#050608" stroke="#FF9E54" stroke-width="0.8" opacity="0.9" />
+              <line id="scene5-bow-line" x1="535" y1="230" x2="625" y2="265" stroke="#EDE6D6" stroke-width="1.8" stroke-linecap="round" />
+            </g>
+
+            <!-- Window Wooden Mullions & Transom Grids -->
+            <rect x="490" y="180" width="220" height="290" fill="none" stroke="#0b0c0f" stroke-width="6" />
+            <line x1="600" y1="180" x2="600" y2="470" stroke="#0b0c0f" stroke-width="5" />
+            <line x1="490" y1="275" x2="710" y2="275" stroke="#0b0c0f" stroke-width="5" />
+            <line x1="490" y1="370" x2="710" y2="370" stroke="#0b0c0f" stroke-width="5" />
+          </g>
+
+          <!-- Entrance Portico & Dark Panel Door -->
+          <g id="scene5-door-group">
+            <polygon points="410,520 600,460 790,520" fill="#14161e" stroke="#262936" stroke-width="3" />
+            <rect x="480" y="550" width="240" height="350" fill="#07080a" stroke="#181a22" stroke-width="4" />
+            <rect x="505" y="575" width="85" height="110" rx="3" fill="#0c0d12" stroke="#1d202a" stroke-width="2" />
+            <rect x="610" y="575" width="85" height="110" rx="3" fill="#0c0d12" stroke="#1d202a" stroke-width="2" />
+            <rect x="505" y="705" width="85" height="150" rx="3" fill="#0c0d12" stroke="#1d202a" stroke-width="2" />
+            <rect x="610" y="705" width="85" height="150" rx="3" fill="#0c0d12" stroke="#1d202a" stroke-width="2" />
+
+            <circle cx="600" cy="630" r="10" fill="url(#brassPlateGrad)" />
+            <circle cx="680" cy="740" r="6" fill="url(#brassPlateGrad)" />
+          </g>
+        </svg>
+
+        <!-- Brass "221B" Number Plate -->
+        <div class="scene5-plate-wrapper" id="scene5-plate-wrapper">
+          <div class="brass-221b-plate" id="scene5-brass-plate">
+            <span class="brass-plate-number">221B</span>
+            <div class="brass-shine-sweep" id="scene5-shine-sweep"></div>
+          </div>
+
+          <!-- Tiny Cyan HUD Tag: "CASE 221B · THE MISSING SAPPHIRE" -->
+          <div class="scene5-hud-tag" id="scene5-hud-tag">
+            <span class="hud-cyan-pip"></span>
+            <span class="hud-tag-text">CASE 221B · THE MISSING SAPPHIRE</span>
+          </div>
+        </div>
+
+        <!-- Drifting Pipe Smoke from Window -->
+        <div class="scene5-window-smoke-container" aria-hidden="true">
+          <svg class="window-smoke-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <path id="scene5-window-smoke" d="M 150 180 Q 120 130 160 90 Q 180 50 140 10" fill="none" stroke="rgba(237, 230, 214, 0.45)" stroke-width="4" stroke-linecap="round" filter="blur(3px)" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 6: Dark Charcoal Room, 5 Line-Art Clues, Cyan Scanline & Empty Jewel Case -->
+    <div class="intro-scene scene-6" id="scene6" data-scene="6">
+      <div class="scene6-room-backdrop">
+        <div class="scene6-grid-overlay"></div>
+      </div>
+
+      <!-- Thin Cyan Horizontal Scanline -->
+      <div class="scene6-scanline" id="scene6-scanline"></div>
+
+      <!-- 5 Line-Art Clues -->
+      <div class="scene6-clues-container" id="scene6-clues-container">
+        <!-- Clue 1: Champagne glass with lipstick mark -->
+        <div class="clue-item clue-1" id="clue1-item" style="top: 18%; left: 12%;">
+          <svg class="clue-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="clueGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#FF6A1F" flood-opacity="0.6" />
+              </filter>
+            </defs>
+            <g id="clue1" filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <!-- Champagne glass flute bowl -->
+              <path d="M 60 30 C 60 75, 100 75, 100 30 Z" />
+              <line x1="64" y1="48" x2="96" y2="48" stroke-dasharray="3 2" opacity="0.7" />
+              <!-- Stem & Base -->
+              <line x1="80" y1="75" x2="80" y2="125" />
+              <line x1="55" y1="125" x2="105" y2="125" />
+              <!-- Lipstick mark -->
+              <path d="M 62 33 C 64 28, 72 28, 74 33" stroke="#FF9E54" stroke-width="2.5" stroke-linecap="round" />
+            </g>
+          </svg>
+          <div class="clue-hud-label" id="clue-label-1">
+            <span class="hud-cyan-pip"></span>
+            <span class="clue-label-text">CLUE 01 / SUSPECT: ???</span>
+          </div>
+        </div>
+
+        <!-- Clue 2: Torn glove -->
+        <div class="clue-item clue-2" id="clue2-item" style="top: 15%; right: 14%;">
+          <svg class="clue-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <g id="clue2" filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <!-- Glove outline with torn cuff -->
+              <path d="M 45 45 C 45 35 52 30 58 40 L 62 25 C 66 22 72 25 74 40 L 78 20 C 82 18 88 20 90 40 L 94 28 C 98 28 102 32 102 50 L 105 80 L 100 110 L 92 105 L 84 122 L 76 108 L 68 124 L 60 112 L 52 106 L 45 85 Z" />
+              <path d="M 65 60 L 65 95 M 78 58 L 78 95 M 90 62 L 90 92" stroke-dasharray="3 3" opacity="0.6" />
+              <path d="M 84 122 L 87 130 M 76 108 L 74 116 M 68 124 L 70 132" stroke="#FF9E54" stroke-width="1" />
+            </g>
+          </svg>
+          <div class="clue-hud-label" id="clue-label-2">
+            <span class="hud-cyan-pip"></span>
+            <span class="clue-label-text">CLUE 02 / SUSPECT: ???</span>
+          </div>
+        </div>
+
+        <!-- Clue 3: Small brass key -->
+        <div class="clue-item clue-3" id="clue3-item" style="top: 52%; left: 10%;">
+          <svg class="clue-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <g id="clue3" filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <circle cx="80" cy="42" r="22" />
+              <circle cx="80" cy="42" r="14" />
+              <circle cx="80" cy="20" r="4" />
+              <line x1="80" y1="64" x2="80" y2="135" />
+              <rect x="74" y="72" width="12" height="5" rx="1" />
+              <path d="M 80 105 L 104 105 L 104 116 L 94 116 L 94 122 L 106 122 L 106 135 L 80 135" />
+            </g>
+          </svg>
+          <div class="clue-hud-label" id="clue-label-3">
+            <span class="hud-cyan-pip"></span>
+            <span class="clue-label-text">CLUE 03 / SUSPECT: ???</span>
+          </div>
+        </div>
+
+        <!-- Clue 4: Torn guest-list scrap with handwritten lines -->
+        <div class="clue-item clue-4" id="clue4-item" style="top: 50%; right: 12%;">
+          <svg class="clue-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <g id="clue4" filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <path d="M 30 25 L 130 25 L 130 100 L 118 95 L 105 115 L 90 102 L 75 118 L 60 106 L 45 120 L 30 110 Z" />
+              <path d="M 42 40 Q 55 35 68 43 T 92 38 T 118 42" stroke-width="1.2" />
+              <path d="M 42 56 Q 58 50 72 58 T 98 52 T 112 56" stroke-width="1.2" />
+              <path d="M 42 72 Q 52 68 64 74 T 88 70 T 115 74" stroke-width="1.2" />
+              <path d="M 42 88 Q 55 84 68 90 T 95 86" stroke-width="1.2" />
+              <line x1="40" y1="56" x2="114" y2="56" stroke="#FF9E54" stroke-width="1.5" />
+            </g>
+          </svg>
+          <div class="clue-hud-label" id="clue-label-4">
+            <span class="hud-cyan-pip"></span>
+            <span class="clue-label-text">CLUE 04 / SUSPECT: ???</span>
+          </div>
+        </div>
+
+        <!-- Clue 5: Pocket watch stopped at 9:40 -->
+        <div class="clue-item clue-5" id="clue5-item" style="bottom: 12%; left: 50%; transform: translateX(-50%);">
+          <svg class="clue-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <g id="clue5" filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <circle cx="80" cy="88" r="46" />
+              <circle cx="80" cy="88" r="40" stroke-dasharray="3 3" opacity="0.6" />
+              <rect x="74" y="34" width="12" height="8" rx="1" />
+              <circle cx="80" cy="26" r="10" />
+              <circle cx="80" cy="88" r="2.5" fill="#FF6A1F" />
+              <!-- Hour hand stopped at 9:40 -->
+              <line x1="80" y1="88" x2="57" y2="74" stroke-width="2.2" stroke-linecap="round" />
+              <!-- Minute hand stopped at 40 min -->
+              <line x1="80" y1="88" x2="48" y2="104" stroke-width="1.5" stroke-linecap="round" />
+              <line x1="80" y1="52" x2="80" y2="57" />
+              <line x1="116" y1="88" x2="111" y2="88" />
+              <line x1="80" y1="124" x2="80" y2="119" />
+              <line x1="44" y1="88" x2="49" y2="88" />
+            </g>
+          </svg>
+          <div class="clue-hud-label" id="clue-label-5">
+            <span class="hud-cyan-pip"></span>
+            <span class="clue-label-text">CLUE 05 / SUSPECT: ???</span>
+          </div>
+        </div>
+
+        <!-- Empty Open Jewel Case in center with Cyan Sapphire outline and STOLEN tag -->
+        <div class="jewel-case-item" id="jewel-case-item" style="top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0;">
+          <svg class="jewel-case-svg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#clueGlow)" stroke="#FF6A1F" stroke-width="1.5" fill="none">
+              <polygon points="30,65 170,65 155,20 45,20" />
+              <polygon points="38,60 162,60 149,26 51,26" stroke-dasharray="4 2" opacity="0.5" />
+              <polygon points="25,75 175,75 165,145 35,145" />
+              <polygon points="38,85 162,85 154,135 46,135" />
+              <ellipse cx="100" cy="110" rx="35" ry="16" stroke-dasharray="3 3" opacity="0.7" />
+            </g>
+            <g id="sapphire-outline" stroke="#4FD1D9" stroke-width="1.5" fill="rgba(79, 209, 217, 0.08)" filter="drop-shadow(0 0 8px rgba(79, 209, 217, 0.7))">
+              <polygon points="100,90 120,102 120,118 100,130 80,118 80,102" />
+              <polygon points="100,90 110,104 100,118 90,104" />
+              <line x1="100" y1="90" x2="100" y2="130" stroke-width="1" />
+              <line x1="80" y1="102" x2="120" y2="118" stroke-width="1" />
+              <line x1="120" y1="102" x2="80" y2="118" stroke-width="1" />
+            </g>
+          </svg>
+          <div class="jewel-case-hud-tag" id="jewel-stolen-tag">
+            <span class="hud-cyan-pip"></span>
+            <span class="hud-stolen-text">STOLEN</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scene 7: Detective Strings, Title, Cyan Chip, Typewriter & Handoff Flash -->
+    <div class="intro-scene scene-7" id="scene7" data-scene="7">
+      <svg class="scene7-strings-svg" viewBox="0 0 1000 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#FF6A1F" stroke-width="2" stroke-linecap="round" fill="none" filter="drop-shadow(0 0 6px rgba(255,106,31,0.7))">
+          <path class="detective-string string-1" d="M 120 126 Q 310 213 500 320" />
+          <path class="detective-string string-2" d="M 860 105 Q 680 212 500 320" />
+          <path class="detective-string string-3" d="M 100 364 Q 300 342 500 320" />
+          <path class="detective-string string-4" d="M 880 350 Q 690 335 500 320" />
+          <path class="detective-string string-5" d="M 500 616 L 500 320" />
+        </g>
+      </svg>
+
+      <div class="scene7-title-container" id="scene7-title-container">
+        <h1 class="scene7-gothic-title" id="scene7-title">AZURE ALIBI</h1>
+        
+        <!-- Small cyan chip "STATUS: OPEN" under title -->
+        <div class="scene7-status-chip" id="scene7-status-chip">
+          <span class="hud-cyan-pip"></span>
+          <span class="status-chip-text">STATUS: OPEN</span>
+        </div>
+
+        <!-- Special Elite typewriter text in fog grey -->
+        <div class="scene7-typewriter-wrapper">
+          <p class="scene7-typewriter-line" id="scene7-typewriter-line1"></p>
+          <p class="scene7-typewriter-line" id="scene7-typewriter-line2"></p>
+        </div>
+      </div>
+
+      <div class="scene7-flash-overlay" id="scene7-flash" aria-hidden="true"></div>
+    </div>
 
     <!-- Persistent Atmospheric Layer (Fog & Rain drifting across all scenes, adjustable opacity) -->
     <div id="intro-atmosphere" class="intro-atmosphere" aria-hidden="true">
@@ -477,37 +740,401 @@
     </div>
   </section>
 
-  <!-- Placeholder #main Section (Revealed after intro) -->
+  <!-- Main Section: Screen 1, Screen 2, Screen 3 -->
   <main id="main" class="main-section" aria-label="Main Case Dossier">
-    <div class="main-placeholder-wrapper">
-      <div class="main-hud-badge">
-        <span class="hud-cyan-dot"></span>
-        <span class="hud-cyan-code">CLASSIFIED // ARCHIVE 221B</span>
+    <!-- Screen 1: Hero Section -->
+    <section id="hero" class="hero-case-board">
+      <div class="main-placeholder-wrapper">
+        <div class="main-hud-badge">
+          <span class="hud-cyan-dot"></span>
+          <span class="hud-cyan-code">CASE FILE 01 · THE MISSING SAPPHIRE</span>
+        </div>
+        <h1 class="main-gothic-title">AZURE ALIBI</h1>
+        <p class="main-tagline-placeholder">
+          A valuable sapphire was stolen at a party. Five suspects. Each with an alibi and one clue.
+        </p>
+        <div class="main-action-hero">
+          <button class="btn-sticker hero-open-case-btn" id="enter-case-btn" type="button" aria-label="Enter the case">
+            ENTER THE CASE &gt;&gt;
+          </button>
+        </div>
+        <div class="main-hud-meta">
+          <span class="hud-meta-tag">INVESTIGATION ACTIVE</span>
+          <span class="hud-meta-sep">/</span>
+          <span class="hud-meta-tag">AZURE ALIBI CASE FILE #01</span>
+        </div>
       </div>
-      <h1 class="main-gothic-title">Baker Street Dossier</h1>
-      <p class="main-typewriter-text">
-        "It is a capital mistake to theorise before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts."
-      </p>
-      <div class="main-hud-meta">
-        <span class="hud-meta-tag">INVESTIGATION ACTIVE</span>
-        <span class="hud-meta-sep">/</span>
-        <span class="hud-meta-tag">METROPOLITAN CRIME REGISTER 2026</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Empty Sections for Case Files & Evidence -->
-    <section id="case" class="section section-case" data-section-name="CASES"></section>
-    <section id="evidence" class="section section-evidence" data-section-name="EVIDENCE"></section>
+    <!-- Screen 2: Case Briefing Section -->
+    <section id="briefing" class="section section-briefing" data-section-name="BRIEFING">
+      <div class="briefing-card">
+        <div class="briefing-header">
+          <span class="briefing-badge">CLASSIFIED // METROPOLITAN POLICE DOSSIER</span>
+          <span class="briefing-date">OCTOBER 14, 1890 · MAYFAIR, LONDON</span>
+        </div>
+        <h2 class="briefing-title">THE MISSING SAPPHIRE AT STERLING MANOR</h2>
+        <p class="briefing-text">
+          During an opulent evening gala at Sterling Manor, the legendary Azure Sapphire vanished from its velvet cabinet in the private vault gallery between 9:30 PM and 10:00 PM. Five prominent guests were present in the gallery wing, each presenting an alibi for the crucial window.
+        </p>
+        <div class="briefing-objectives">
+          <h3 class="objectives-title">INVESTIGATION OBJECTIVES:</h3>
+          <ul class="objectives-list">
+            <li><span class="hud-cyan-pip"></span> Examine the 5 line-art clues discovered at the crime scene.</li>
+            <li><span class="hud-cyan-pip"></span> Inspect the 5 suspect profiles and analyze their alibis.</li>
+            <li><span class="hud-cyan-pip"></span> Connect each clue to its corresponding suspect on the Case Board.</li>
+            <li><span class="hud-cyan-pip"></span> Track case progress from OPEN to IN PROGRESS and SOLVED.</li>
+          </ul>
+        </div>
+        <div class="briefing-actions">
+          <button class="btn-sticker" id="proceed-board-btn" type="button">
+            PROCEED TO CASE BOARD &gt;&gt;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 3: Interactive Case Board Evidence Wall Section -->
+    <section id="board" class="section section-board" data-section-name="CASE BOARD">
+      <div class="board-header">
+        <div class="board-title-group">
+          <span class="board-mono-code">CASE FILE 01 // EVIDENCE WALL & SAPPHIRE VAULT</span>
+          <h2 class="board-title">THE CASE BOARD</h2>
+        </div>
+        <div class="board-stats-bar">
+          <button class="btn-secondary btn-timeline" id="board-view-timeline-btn" type="button">
+            ⏱️ VIEW TIMELINE
+          </button>
+          <div class="stat-chip">
+            <span class="stat-label">INSPECTED CLUES:</span>
+            <span class="stat-val" id="inspected-clues-count">0 / 5</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-label">EVIDENCE STRINGS:</span>
+            <span class="stat-val" id="connected-strings-count">0 / 5</span>
+          </div>
+          <button class="btn-reset" id="reset-evidence-btn" type="button" title="Reset all connected evidence">
+            RESET EVIDENCE
+          </button>
+        </div>
+      </div>
+
+      <!-- Clear empty state instruction bar -->
+      <div class="board-instruction-bar" id="board-instruction-bar">
+        <span class="hud-cyan-pip"></span>
+        <span id="board-empty-hint" class="board-empty-hint">No evidence connected yet. Select a clue slip below, then a suspect polaroid.</span>
+      </div>
+
+      <!-- Detective Evidence Wall Canvas -->
+      <div class="evidence-wall-canvas" id="evidence-wall-canvas">
+        <!-- Atmosphere Background Layer: Charcoal vignette, grain & dim pinned scraps -->
+        <div class="wall-atmosphere-bg" aria-hidden="true">
+          <div class="wall-vignette"></div>
+          <div class="faint-scrap scrap-1"></div>
+          <div class="faint-scrap scrap-2"></div>
+          <div class="faint-scrap scrap-3"></div>
+        </div>
+
+        <!-- SVG Evidence Red Strings Layer -->
+        <svg id="board-strings-svg" class="board-strings-svg" aria-hidden="true"></svg>
+
+        <!-- Center Item: Open Empty Jewel Case Card -->
+        <div class="center-jewel-card" id="center-jewel-card">
+          <div class="pin pin-cyan" aria-hidden="true"></div>
+          <!-- Hidden Sapphire Trigger for Easter Egg Cipher -->
+          <button class="hidden-sapphire-trigger" id="hidden-sapphire-btn" type="button" aria-label="Hidden sapphire mark" title="Hidden sapphire mark" tabindex="0">
+            <svg viewBox="0 0 24 24" class="hidden-sapphire-icon" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="12,2 20,8 20,16 12,22 4,16 4,8" stroke="#4FD1D9" stroke-width="1.5" fill="rgba(79, 209, 217, 0.25)" />
+            </svg>
+          </button>
+          <span class="jewel-card-badge">VAULT GALLERY · STERLING MANOR</span>
+          <h3 class="jewel-card-title">THE MISSING SAPPHIRE</h3>
+          <div class="jewel-svg-box">
+            <svg viewBox="0 0 160 140" class="center-sapphire-svg" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="20,50 140,50 125,15 35,15" stroke="#FF6A1F" stroke-width="1.5" fill="none"/>
+              <polygon points="15,60 145,60 135,125 25,125" stroke="#FF6A1F" stroke-width="1.5" fill="none"/>
+              <ellipse cx="80" cy="92" rx="30" ry="14" stroke="#FF6A1F" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
+              <!-- Faint Cyan Sapphire Vector Outline -->
+              <g stroke="#4FD1D9" stroke-width="1.5" fill="rgba(79, 209, 217, 0.08)" filter="drop-shadow(0 0 6px rgba(79, 209, 217, 0.5))">
+                <polygon points="80,72 98,82 98,98 80,108 62,98 62,82" />
+                <polygon points="80,72 88,84 80,98 72,84" />
+                <line x1="80" y1="72" x2="80" y2="108" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <span class="jewel-card-stolen">STATUS: STOLEN</span>
+        </div>
+
+        <!-- 5 Suspect Polaroid Cards Grid surrounding center -->
+        <div id="suspect-polaroids-grid" class="suspect-polaroids-grid">
+          <!-- Dynamically injected polaroid cards -->
+        </div>
+
+        <!-- Evidence Clues Cream Paper Slips Tray at Bottom -->
+        <div class="clues-tray-wrapper">
+          <div class="clues-tray-header">
+            <span class="tray-label">EVIDENCE CLUE TRAY (SELECT CLUE TO CONNECT)</span>
+          </div>
+          <div class="clues-paper-tray" id="clue-cards-container">
+            <!-- Dynamically injected cream paper slips -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 4: Final Deduction & Accusation Section -->
+    <section id="deduction" class="section section-deduction" data-section-name="DEDUCTION">
+      <div class="deduction-container">
+        <div class="deduction-header">
+          <span class="deduction-mono-tag">CLASSIFIED // FINAL ACCUSATION</span>
+          <h2 class="deduction-main-title">THE DEDUCTION ROOM</h2>
+          <p class="deduction-subtitle">
+            Review the evidence connections and night timeline. Select the suspect you wish to accuse of stealing the Azure Sapphire.
+          </p>
+          <button class="btn-secondary btn-timeline" id="deduction-view-timeline-btn" type="button">
+            ⏱️ REVIEW NIGHT TIMELINE
+          </button>
+        </div>
+
+        <!-- Suspect Selection Grid for Accusation -->
+        <div class="deduction-suspects-grid" id="deduction-suspects-grid">
+          <!-- Dynamically populated selectable suspect polaroids -->
+        </div>
+
+        <!-- Clues Evidence Recap Strip -->
+        <div class="deduction-recap-strip">
+          <h3 class="recap-strip-title">CURRENT EVIDENCE STRINGS RECAP</h3>
+          <div class="recap-clues-list" id="deduction-clues-recap">
+            <!-- Dynamically populated clue connection chips -->
+          </div>
+        </div>
+
+        <!-- Accusation Action Footer -->
+        <div class="deduction-action-footer">
+          <button id="submit-deduction-btn" class="btn-sticker btn-accuse" type="button" disabled>
+            SUBMIT DEDUCTION &gt;&gt;
+          </button>
+          <p id="accuse-btn-hint" class="accuse-hint">
+            Select a prime suspect card above to file your accusation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 5: Solved Case Summary Archive Page -->
+    <section id="summary" class="section section-summary" data-section-name="SUMMARY">
+      <div class="summary-container" id="summary-container">
+        <!-- Dynamically rendered solved case summary or review archive -->
+      </div>
+    </section>
+
+    <!-- Screen 6: Irregulars' Secret Archive (Easter Egg) -->
+    <section id="archive" class="section section-archive" data-section-name="ARCHIVE">
+      <div class="archive-container" id="archive-container">
+        <div class="archive-stamp-banner">SECRET ARCHIVE UNLOCKED</div>
+        <div class="archive-header">
+          <span class="archive-mono-tag">BAKER STREET IRREGULARS // CONFIDENTIAL DOSSIER</span>
+          <h2 class="archive-main-title">THE IRREGULARS' ARCHIVE</h2>
+          <p class="archive-note">
+            "An entry in the duplicate-key register was recorded shortly before the sapphire vanished. The time and the name beside it deserve closer examination."
+          </p>
+        </div>
+
+        <div class="archive-document-card">
+          <div class="archive-doc-header">
+            <span class="doc-badge">CONCEALED METROPOLITAN POLICE RECORD</span>
+            <span class="doc-date">OCTOBER 14, 1890 · 9:08 PM</span>
+          </div>
+          <h3 class="doc-title">DUPLICATE VAULT KEY REGISTER SCRAP</h3>
+          <p class="doc-content">
+            "Entry #047 in the Vault Gallery Logbook indicates key issuance at 9:08 PM. The ledger signature uses specialized mathematical notation (dx/dt calculus symbols), matching private notebooks of a prominent academic guest. No authorized staff issued this key."
+          </p>
+        </div>
+
+        <div class="archive-actions">
+          <button class="btn-sticker" id="archive-review-doc-btn" type="button">
+            REVIEW DOCUMENT &gt;&gt;
+          </button>
+          <button class="btn-secondary" id="archive-return-board-btn" type="button">
+            RETURN TO INVESTIGATION
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Empty Footer Section -->
-  <footer id="footer" class="section section-footer" data-section-name="CONTACT"></footer>
+
+  <!-- Clue Detail Modal -->
+  <div class="modal-backdrop" id="clue-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="clue-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle" id="modal-clue-subtitle">CLUE DETAIL</span>
+        <h2 class="modal-title" id="modal-clue-title">CLUE TITLE</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-svg-wrapper" id="modal-clue-svg-container"></div>
+        <p class="modal-description" id="modal-clue-description"></p>
+        
+        <div class="modal-connection-box">
+          <label class="connection-label" for="suspect-select">CONNECT EVIDENCE TO SUSPECT:</label>
+          <select id="suspect-select" class="suspect-dropdown">
+            <option value="">-- Select Suspect --</option>
+            <option value="suspect1">Prof. James Moriarty</option>
+            <option value="suspect2">Irene Adler</option>
+            <option value="suspect3">Col. Sebastian Moran</option>
+            <option value="suspect4">Charles Milverton</option>
+            <option value="suspect5">Dr. Grimesby Roylott</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sticker" id="connect-evidence-btn" type="button">CONNECT EVIDENCE</button>
+        <button class="btn-secondary" id="remove-evidence-btn" type="button">REMOVE CONNECTION</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suspect Profile Modal -->
+  <div class="modal-backdrop" id="suspect-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="suspect-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle" id="modal-suspect-role">SUSPECT PROFILE</span>
+        <h2 class="modal-title" id="modal-suspect-name">SUSPECT NAME</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-portrait-wrapper" id="modal-suspect-portrait"></div>
+        <div class="suspect-meta-info">
+          <div class="meta-row">
+            <span class="meta-label">DISTINGUISHING PROP:</span>
+            <span class="meta-val" id="modal-suspect-prop"></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">ALIBI STATEMENT:</span>
+            <p class="meta-alibi" id="modal-suspect-alibi"></p>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">CONNECTED EVIDENCE:</span>
+            <span class="meta-val" id="modal-suspect-connection">NO EVIDENCE CONNECTED</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="suspect-modal-ok-btn" type="button">CLOSE PROFILE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Modal -->
+  <div class="modal-backdrop" id="timeline-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card modal-card-wide">
+      <button class="modal-close" id="timeline-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle">CHRONOLOGY OF EVENTS</span>
+        <h2 class="modal-title">CRIME SCENE TIMELINE · OCT 14, 1890</h2>
+      </div>
+      <div class="modal-body">
+        <div class="timeline-events-list" id="timeline-events-container">
+          <!-- Injected timeline cards -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sticker" id="timeline-modal-ok-btn" type="button">CLOSE TIMELINE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accusation Confirmation Dialog Modal -->
+  <div class="modal-backdrop" id="accusation-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="accusation-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle">CONFIRM ACCUSATION</span>
+        <h2 class="modal-title" id="accusation-modal-title">ACCUSE SUSPECT?</h2>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description" id="accusation-modal-text">
+          You are about to submit your final deduction. Are you certain?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sticker" id="confirm-accusation-btn" type="button">CONFIRM ACCUSATION</button>
+        <button class="btn-secondary" id="cancel-accusation-btn" type="button">GO BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Incorrect Deduction Outcome Modal -->
+  <div class="modal-backdrop" id="incorrect-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="incorrect-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle" style="color: #FF6A1F;">DEDUCTION UNFOUNDED</span>
+        <h2 class="modal-title">INCORRECT ACCUSATION</h2>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description" id="incorrect-modal-text">
+          The evidence collected does not support this accusation. The true culprit remains at large. Your evidence strings and inspected profiles remain intact.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sticker" id="incorrect-return-board-btn" type="button">RETURN TO CASE BOARD</button>
+        <button class="btn-secondary" id="incorrect-try-again-btn" type="button">TRY ANOTHER DEDUCTION</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dancing Men Cipher Easter Egg Modal -->
+  <div class="modal-backdrop" id="cipher-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card modal-card-wide">
+      <button class="modal-close" id="cipher-modal-close" type="button" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-subtitle">DANCING MEN CIPHER · EASTER EGG</span>
+        <h2 class="modal-title">DECODE THE HIDDEN MESSAGE</h2>
+      </div>
+      <div class="modal-body">
+        <p class="cipher-instruction">
+          Each figure represents a letter. Match the symbols using the decoding key to reveal the message.
+        </p>
+
+        <!-- Encoded Dancing Men Symbols Display -->
+        <div class="cipher-symbols-display" id="cipher-symbols-display">
+          <!-- Injected SVG stick figures & input slots -->
+        </div>
+
+        <!-- On-Screen Alphabet Keyboard -->
+        <div class="cipher-keyboard-wrapper">
+          <span class="keyboard-label">SELECT A SYMBOL ABOVE, THEN CLICK A LETTER BELOW:</span>
+          <div class="cipher-alphabet-grid" id="cipher-alphabet-grid">
+            <!-- Injected A-Z buttons -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="show-decoding-key-btn" type="button">SHOW DECODING KEY</button>
+        <button class="btn-secondary" id="need-hint-btn" type="button">NEED A HINT? (0)</button>
+        <button class="btn-sticker" id="cipher-return-btn" type="button">RETURN TO INVESTIGATION</button>
+      </div>
+  </div>
+
+
+
+  <!-- Footer Section -->
+  <footer id="footer" class="section section-footer" data-section-name="CONTACT">
+    <div class="footer-inner">
+      <span class="footer-title">AZURE ALIBI</span>
+      <span class="footer-sub">DIGITAL DETECTIVE ARCHIVES · 1890</span>
+    </div>
+  </footer>
 
   <!-- GSAP & ScrollTrigger from cdnjs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+  <!-- Case Data & Store Script -->
+  <script type="module" src="/case.js"></script>
   <!-- Application Script -->
-  <script src="script.js"></script>
+  <script type="module" src="/script.js"></script>
 </body>
 </html>

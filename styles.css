@@ -1421,6 +1421,349 @@ body {
     transform: translateY(-8px) scaleX(1.15);
   }
 }
+/* ==========================================================================
+   Scene 5: 221B Townhouse Facade, Brass Plate Shine & Violin Player
+   ========================================================================== */
+
+#scene5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--black);
+}
+
+.scene5-facade-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.scene5-townhouse-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Brass "221B" Number Plate Box */
+.scene5-plate-wrapper {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brass-221b-plate {
+  position: relative;
+  background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 30%, #AA820A 70%, #554105 100%);
+  border: 2px solid #FFF8DC;
+  border-radius: 4px;
+  padding: 0.45rem 1.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+
+.brass-plate-number {
+  font-family: var(--font-headline);
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  letter-spacing: 0.15em;
+  color: #120e03;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  display: block;
+}
+
+.brass-shine-sweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+.scene5-hud-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(11, 11, 12, 0.85);
+  border: 1px solid var(--grey);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+}
+
+.hud-tag-text {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-shadow: 0 0 6px var(--cyan-glow);
+  text-transform: uppercase;
+}
+
+/* Drifting Pipe Smoke from Window */
+.scene5-window-smoke-container {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.window-smoke-svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ==========================================================================
+   Scene 6: Dark Charcoal Room, 5 Line-Art Clues & Cyan Scanline
+   ========================================================================== */
+
+#scene6 {
+  background-color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scene6-room-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #1c1f26 0%, #121418 60%, #090a0d 100%);
+}
+
+.scene6-grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: linear-gradient(var(--mid-grey) 1px, transparent 1px), linear-gradient(90deg, var(--mid-grey) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Cyan Horizontal Scanline */
+.scene6-scanline {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan), 0 0 24px var(--cyan-glow);
+  top: 0%;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.scene6-clues-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.clue-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: transform, opacity;
+}
+
+.clue-svg {
+  width: clamp(100px, 12vw, 150px);
+  height: clamp(100px, 12vw, 150px);
+  filter: drop-shadow(0 0 8px var(--orange-glow));
+}
+
+.clue-hud-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(11, 11, 12, 0.85);
+  border: 1px solid var(--grey);
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.clue-hud-label.label-active {
+  opacity: 1;
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.clue-label-text {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-shadow: 0 0 6px var(--cyan-glow);
+  text-transform: uppercase;
+}
+
+
+.jewel-case-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  will-change: transform, opacity;
+  z-index: 15;
+}
+
+.jewel-case-svg {
+  width: clamp(140px, 16vw, 200px);
+  height: clamp(120px, 14vw, 170px);
+  filter: drop-shadow(0 0 10px var(--orange-glow));
+}
+
+.jewel-case-hud-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(11, 11, 12, 0.9);
+  border: 1px solid var(--cyan);
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.hud-stolen-text {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-shadow: 0 0 6px var(--cyan-glow);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   Scene 7: Connecting Strings, Gothic Title, Quote & Handoff Flash
+   ========================================================================== */
+
+#scene7 {
+  background-color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scene7-strings-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.detective-string {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.scene7-title-container {
+  position: relative;
+  z-index: 15;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.scene7-gothic-title {
+  font-family: var(--font-gothic);
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  color: var(--cream);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 0 35px var(--orange-glow);
+  margin: 0;
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.scene7-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(11, 11, 12, 0.85);
+  border: 1px solid var(--cyan);
+  padding: 0.3rem 0.85rem;
+  border-radius: 3px;
+  box-shadow: 0 0 10px var(--cyan-glow);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.status-chip-text {
+  font-family: var(--font-hud);
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-shadow: 0 0 6px var(--cyan-glow);
+  text-transform: uppercase;
+}
+
+.scene7-typewriter-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.scene7-typewriter-line {
+  font-family: var(--font-typewriter);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  color: var(--fog);
+  letter-spacing: 0.06em;
+  margin: 0;
+  min-height: 1.4em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.scene7-flash-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--orange);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+}
 
 
 /* ==========================================================================
@@ -1733,27 +2076,36 @@ body {
    ========================================================================== */
 
 .main-section {
-  min-height: 100vh;
+  min-height: auto;
   background-color: var(--black);
   position: relative;
   box-sizing: border-box;
-  padding: calc(var(--nav-height) + 4rem) 2rem 4rem 2rem;
+  padding: calc(var(--nav-height) + 2rem) 1.5rem 4rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 3rem;
+  width: 100%;
+}
+
+.section {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .main-placeholder-wrapper {
   max-width: 820px;
   width: 100%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   background-color: var(--charcoal);
   border: 1px solid var(--grey);
-  padding: 3rem 2.75rem;
+  padding: 2.5rem 2.5rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
 }
@@ -1788,6 +2140,25 @@ body {
   text-transform: none;
 }
 
+.hero-case-board {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-tagline-placeholder {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: var(--fog);
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.main-action-hero {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
 .main-typewriter-text {
   font-family: var(--font-typewriter);
   font-size: clamp(1rem, 1.4vw, 1.25rem);
@@ -1815,107 +2186,1785 @@ body {
   color: var(--grey);
 }
 
-.section-case {
-  background-color: var(--charcoal);
-  border-top: 1px solid var(--grey);
-}
-
-.section-evidence {
-  background-color: var(--black);
-}
-
 .section-footer {
-  min-height: 60vh;
+  min-height: auto;
   background-color: var(--charcoal);
   border-top: 1px solid var(--grey);
+  padding: 2rem 0;
+  width: 100%;
+}
+
+/* Nav Status Chip */
+.nav-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 18, 22, 0.85);
+  border: 1px solid var(--cyan);
+  padding: 0.35rem 0.85rem;
+  border-radius: 3px;
+  box-shadow: 0 0 10px var(--cyan-glow);
+  font-family: var(--font-hud);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.nav-status-chip.status-in-progress {
+  border-color: var(--orange);
+  color: var(--orange);
+  box-shadow: 0 0 10px var(--orange-glow);
+}
+
+.nav-status-chip.status-solved {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 15px var(--cyan);
+  background: rgba(79, 209, 217, 0.12);
+}
+
+/* Screen 2: Case Briefing Card (Cool cream paper slip) */
+.section-briefing {
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.briefing-card {
+  max-width: 860px;
+  width: 100%;
+  background-color: var(--cream);
+  color: var(--black);
+  border: 2px solid var(--grey);
+  border-radius: 4px;
+  padding: 2.5rem 2.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.briefing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey);
+  padding-bottom: 1rem;
+}
+
+.briefing-badge {
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--mid-grey);
+}
+
+.briefing-date {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--grey);
+}
+
+.briefing-title {
+  font-family: var(--font-gothic);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--black);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.briefing-text {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #1a1c22;
+  border-left: 3px solid var(--orange);
+  padding-left: 1.25rem;
+}
+
+.briefing-objectives {
+  background: rgba(42, 45, 49, 0.08);
+  border: 1px dashed var(--grey);
+  padding: 1.5rem;
+  border-radius: 3px;
+}
+
+.objectives-title {
+  font-family: var(--font-hud);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--grey);
+  margin-bottom: 0.85rem;
+}
+
+.objectives-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.objectives-list li {
+  font-family: var(--font-typewriter);
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #22252a;
+}
+
+.briefing-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* Screen 3: Case Board Layout */
+.section-board {
+  min-height: auto;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--grey);
+  padding-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.board-mono-code {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+}
+
+.board-title {
+  font-family: var(--font-gothic);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--cream);
+  line-height: 1;
+}
+
+.board-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--charcoal);
+  border: 1px solid var(--grey);
+  padding: 0.4rem 0.85rem;
+  border-radius: 3px;
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+
+.stat-label {
+  color: var(--fog);
+}
+
+.stat-val {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--mid-grey);
+  color: var(--fog);
+  font-family: var(--font-hud);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  padding: 0.4rem 0.85rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-reset:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.sub-grid-title {
+  font-family: var(--font-hud);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--fog);
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+}
+
+.clue-cards-container,
+.suspect-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Clue & Suspect Card Component */
+.board-card {
+  background-color: var(--charcoal);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.board-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mid-grey);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.board-card.connected {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.board-card.inspected {
+  border-color: var(--orange);
+}
+
+.card-header-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+}
+
+.card-svg-container {
+  width: 100%;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  border: 1px solid rgba(42, 45, 49, 0.6);
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin: 0;
+}
+
+.card-prop-tag {
+  font-family: var(--font-hud);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+}
+
+.card-status-badge {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.5rem;
+  background: rgba(11, 11, 12, 0.8);
+  border: 1px solid var(--grey);
+  border-radius: 2px;
+  color: var(--fog);
+  text-align: center;
+}
+
+.board-card.connected .card-status-badge {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.btn-card-action {
+  background: var(--black);
+  border: 1px solid var(--grey);
+  color: var(--cream);
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  padding: 0.45rem;
+  border-radius: 2px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-card-action:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* Deduction Room Placeholder */
+.deduction-placeholder {
+  max-width: 600px;
+  margin: 4rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.deduction-locked-tag {
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+}
+
+.deduction-title {
+  font-family: var(--font-gothic);
+  font-size: 2.8rem;
+  color: var(--cream);
+}
+
+.deduction-locked-text {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: var(--fog);
+}
+
+/* Modal Backdrops & Cards */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(11, 11, 12, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background-color: var(--charcoal);
+  border: 1px solid var(--grey);
+  border-radius: 6px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--fog);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--orange);
+}
+
+.modal-subtitle {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.modal-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.6rem;
+  color: var(--cream);
+  margin-top: 0.2rem;
+}
+
+.modal-svg-wrapper,
+.modal-portrait-wrapper {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.modal-svg-wrapper svg,
+.modal-portrait-wrapper svg {
+  max-width: 100% !important;
+  max-height: 160px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.clue-card-svg,
+.suspect-portrait-svg,
+.clue-svg {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+.polaroid-portrait-box,
+.deduction-portrait-wrapper {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-portrait-box svg,
+.deduction-portrait-wrapper svg {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+
+.modal-description {
+  font-family: var(--font-typewriter);
+  font-size: 0.98rem;
+  color: var(--fog);
+  line-height: 1.6;
+}
+
+.modal-connection-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(11, 11, 12, 0.6);
+  padding: 1rem;
+  border: 1px dashed var(--grey);
+  border-radius: 3px;
+}
+
+.connection-label {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--cream);
+}
+
+.suspect-dropdown {
+  background: var(--black);
+  border: 1px solid var(--mid-grey);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 3px;
+  outline: none;
+}
+
+.suspect-dropdown:focus {
+  border-color: var(--cyan);
+}
+
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(42, 45, 49, 0.5);
+  padding-top: 1rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--mid-grey);
+  color: var(--cream);
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  border-color: var(--fog);
+  color: var(--cream);
+}
+
+.suspect-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-label {
+  font-family: var(--font-hud);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+}
+
+.meta-val {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--cream);
+}
+
+.meta-alibi {
+  font-family: var(--font-typewriter);
+  font-size: 0.95rem;
+  color: var(--fog);
+  line-height: 1.55;
+  border-left: 2px solid var(--orange);
+  padding-left: 0.85rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 3rem 0;
+}
+
+.footer-title {
+  font-family: var(--font-gothic);
+  font-size: 2.2rem;
+  color: var(--cream);
+  letter-spacing: 0.1em;
+}
+
+.footer-sub {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--mid-grey);
 }
 
 /* ==========================================================================
-   Responsive Design
+   Restyled Case Board: Detective Evidence Wall & Sapphire Vault
    ========================================================================== */
 
-@media (max-width: 840px) {
-  .nav-links {
-    display: none; /* Compact nav for small screens */
-  }
-
-  .progress-indicator {
-    right: 1rem;
-  }
+.board-instruction-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(22, 24, 28, 0.85);
+  border: 1px solid var(--grey);
+  border-left: 3px solid var(--cyan);
+  padding: 0.65rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 4px;
 }
 
-@media (max-width: 520px) {
-  .brand-subtitle {
-    display: none;
-  }
+.board-empty-hint {
+  font-family: var(--font-typewriter);
+  font-size: 0.92rem;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+}
 
-  .navbar {
-    padding: 0 1rem;
-  }
+.evidence-wall-canvas {
+  position: relative;
+  width: 100%;
+  min-height: 780px;
+  background: var(--charcoal);
+  border: 1px solid var(--grey);
+  border-radius: 8px;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.95);
+}
+
+/* Atmosphere Background Layer */
+.wall-atmosphere-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wall-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 25%, rgba(11, 11, 12, 0.85) 100%);
+}
+
+.faint-scrap {
+  position: absolute;
+  background: rgba(42, 45, 49, 0.12);
+  border: 1px solid rgba(154, 158, 163, 0.08);
+  border-radius: 2px;
+  filter: blur(1.5px);
+}
+.scrap-1 { width: 90px; height: 110px; top: 12%; left: 8%; transform: rotate(-8deg); }
+.scrap-2 { width: 110px; height: 80px; top: 20%; right: 10%; transform: rotate(12deg); }
+.scrap-3 { width: 85px; height: 120px; bottom: 28%; left: 18%; transform: rotate(5deg); }
+
+/* SVG Evidence Strings Overlay */
+.board-strings-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.evidence-string-path {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(255, 106, 31, 0.6));
+  transition: opacity 0.3s ease, stroke 0.3s ease;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawString 0.5s ease-out forwards;
+}
+
+@keyframes drawString {
+  to { stroke-dashoffset: 0; }
+}
+
+.evidence-string-path.string-dimmed {
+  opacity: 0.22;
+  filter: none;
+}
+
+.evidence-string-path.string-active {
+  opacity: 1;
+  stroke: var(--orange);
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 8px rgba(255, 106, 31, 0.9));
+}
+
+/* Center Empty Jewel Case Card */
+.center-jewel-card {
+  position: relative;
+  z-index: 3;
+  align-self: center;
+  width: clamp(260px, 30vw, 320px);
+  background: var(--black);
+  border: 2px solid var(--grey);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(79, 209, 217, 0.1);
+  margin-bottom: 2rem;
+}
+
+.pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow), inset 0 0 4px #fff;
+  z-index: 10;
+}
+
+.jewel-card-badge {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.jewel-card-title {
+  font-family: var(--font-gothic);
+  font-size: 1.6rem;
+  color: var(--cream);
+  margin: 0.3rem 0;
+}
+
+.jewel-svg-box {
+  width: 100%;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-sapphire-svg {
+  width: 140px;
+  height: 100px;
+}
+
+.jewel-card-stolen {
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--orange);
+  background: rgba(255, 106, 31, 0.12);
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  border: 1px solid var(--orange);
+  display: inline-block;
+  margin-top: 0.4rem;
+}
+
+/* 5 Suspect Polaroid Cards Grid */
+.suspect-polaroids-grid {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.polaroid-card {
+  position: relative;
+  background: #E6E2D8;
+  border: 1px solid #CCC7B9;
+  border-radius: 3px;
+  padding: 0.75rem 0.75rem 1rem 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transform-origin: center center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.polaroid-card:nth-child(1) { transform: rotate(-2.4deg); }
+.polaroid-card:nth-child(2) { transform: rotate(1.8deg); }
+.polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+.polaroid-card:nth-child(4) { transform: rotate(2.2deg); }
+.polaroid-card:nth-child(5) { transform: rotate(-2.0deg); }
+
+.polaroid-card:hover,
+.polaroid-card:focus-visible {
+  transform: translateY(-6px) scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.8), 0 0 15px rgba(79, 209, 217, 0.4);
+  outline: none;
+  z-index: 8;
+}
+
+.polaroid-card.selected,
+.polaroid-card.active-target {
+  border: 2px solid var(--cyan) !important;
+  box-shadow: 0 0 20px rgba(79, 209, 217, 0.6) !important;
+}
+
+.polaroid-pin {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mid-grey);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.polaroid-card.connected .polaroid-pin {
+  background: var(--orange);
+  box-shadow: 0 0 8px var(--orange);
+}
+
+.polaroid-portrait-box {
+  width: 100%;
+  height: 160px;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.polaroid-info {
+  margin-top: 0.65rem;
+  text-align: center;
+}
+
+.polaroid-name {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #16181C;
+  line-height: 1.2;
+}
+
+.polaroid-role {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  color: var(--mid-grey);
+  margin-top: 0.2rem;
+}
+
+.polaroid-chips {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip-text {
+  font-family: var(--font-hud);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.chip-inspected {
+  background: rgba(79, 209, 217, 0.15);
+  color: #0d686f;
+  border: 1px solid rgba(79, 209, 217, 0.4);
+}
+
+.chip-connections {
+  background: rgba(255, 106, 31, 0.15);
+  color: #b33d00;
+  border: 1px solid rgba(255, 106, 31, 0.4);
+  font-weight: 700;
+}
+
+.chip-selected {
+  background: var(--cyan);
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* Evidence Clues Cream Paper Slips Tray */
+.clues-tray-wrapper {
+  position: relative;
+  z-index: 4;
+  background: rgba(11, 11, 12, 0.75);
+  border: 1px solid var(--grey);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.clues-tray-header {
+  margin-bottom: 0.85rem;
+}
+
+.tray-label {
+  font-family: var(--font-hud);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.clues-paper-tray {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+}
+
+.clue-paper-slip {
+  position: relative;
+  background: var(--cream);
+  color: var(--black);
+  border: 1px solid #D8CFC0;
+  border-radius: 2px;
+  padding: 1rem 0.85rem 0.85rem 0.85rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.clue-paper-slip:nth-child(1) { transform: rotate(1.2deg); }
+.clue-paper-slip:nth-child(2) { transform: rotate(-1.6deg); }
+.clue-paper-slip:nth-child(3) { transform: rotate(1.0deg); }
+.clue-paper-slip:nth-child(4) { transform: rotate(-1.4deg); }
+.clue-paper-slip:nth-child(5) { transform: rotate(1.5deg); }
+
+.clue-paper-slip:hover,
+.clue-paper-slip:focus-visible {
+  transform: translateY(-6px) rotate(0deg) scale(1.02) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 15px rgba(79, 209, 217, 0.5);
+  outline: none;
+  z-index: 8;
+}
+
+.clue-paper-slip.selected {
+  border: 2px solid var(--cyan) !important;
+  box-shadow: 0 0 18px rgba(79, 209, 217, 0.6) !important;
+}
+
+.slip-tape {
+  position: absolute;
+  top: -8px;
+  left: 30%;
+  width: 45px;
+  height: 14px;
+  background: rgba(220, 215, 195, 0.6);
+  border: 1px solid rgba(180, 175, 155, 0.4);
+  transform: rotate(-3deg);
+}
+
+.slip-exhibit {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  color: #4A4D50;
+  text-transform: uppercase;
+}
+
+.slip-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0B0B0C;
+  margin: 0.3rem 0;
+}
+
+.slip-status-tag {
+  font-family: var(--font-hud);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.slip-examine-hint {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  color: #16181C;
+  border-top: 1px dashed #B5AE9E;
+  padding-top: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+/* Slide in animation on board load */
+.animate-slip-slide {
+  animation: slipSlideIn 0.4s ease-out forwards;
+}
+
+@keyframes slipSlideIn {
+  from { opacity: 0; transform: translateY(20px) rotate(-4deg); }
+  to { opacity: 1; }
 }
 
 /* ==========================================================================
-   Prefers-Reduced-Motion
-   Full compliance for users requesting reduced motion
+   Screen 4: Deduction Room & Accusation Styles
    ========================================================================== */
 
+.deduction-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.deduction-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.deduction-mono-tag {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.deduction-main-title {
+  font-family: var(--font-gothic);
+  font-size: 2.8rem;
+  color: var(--cream);
+  margin: 0.3rem 0;
+}
+
+.deduction-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--fog);
+  max-width: 650px;
+  margin: 0 auto 1.25rem auto;
+  line-height: 1.5;
+}
+
+.btn-timeline {
+  margin-top: 0.5rem;
+}
+
+.deduction-suspects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.deduction-suspect-card {
+  position: relative;
+  background: var(--charcoal);
+  border: 2px solid var(--grey);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.deduction-suspect-card:hover,
+.deduction-suspect-card:focus-visible {
+  border-color: var(--cyan);
+  transform: translateY(-4px);
+  outline: none;
+}
+
+.deduction-suspect-card.accuse-selected {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 24px rgba(79, 209, 217, 0.5) !important;
+  background: rgba(22, 24, 28, 0.95);
+}
+
+.selected-badge-label {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: var(--cyan);
+  color: var(--black);
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.deduction-portrait-wrapper {
+  width: 100%;
+  height: 150px;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.deduction-suspect-name {
+  font-family: var(--font-typewriter);
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.deduction-suspect-role {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 0.12em;
+}
+
+.deduction-alibi-snippet {
+  font-family: var(--font-typewriter);
+  font-size: 0.85rem;
+  color: var(--fog);
+  line-height: 1.4;
+  margin: 0.6rem 0 0.85rem 0;
+  text-align: left;
+  border-left: 2px solid var(--orange);
+  padding-left: 0.6rem;
+}
+
+.deduction-linked-clues-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.deduction-clue-slip {
+  background: var(--cream);
+  color: var(--black);
+  border: 1px solid #CFC7B7;
+  border-radius: 3px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.deduction-clue-title {
+  font-family: var(--font-typewriter);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0B0B0C;
+  margin-bottom: 0.35rem;
+}
+
+.verdict-prompt-text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: #4A4D50;
+  margin-bottom: 0.4rem;
+  line-height: 1.35;
+}
+
+.verdict-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.verdict-btn {
+  background: rgba(11, 11, 12, 0.08);
+  border: 1px solid #B5AE9E;
+  color: #16181C;
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.verdict-btn:hover,
+.verdict-btn:focus-visible {
+  border-color: #0B0B0C;
+  background: rgba(11, 11, 12, 0.15);
+}
+
+.verdict-btn.active-supports {
+  background: rgba(79, 209, 217, 0.25) !important;
+  border-color: #0d686f !important;
+  color: #0d686f !important;
+  font-weight: 700;
+}
+
+.verdict-btn.active-contradicts {
+  background: rgba(255, 106, 31, 0.25) !important;
+  border-color: #b33d00 !important;
+  color: #b33d00 !important;
+  font-weight: 700;
+}
+
+.verdict-btn.active-inconclusive {
+  background: rgba(154, 158, 163, 0.25) !important;
+  border-color: #4A4D50 !important;
+  color: #16181C !important;
+  font-weight: 700;
+}
+
+.deduction-neutral-summary {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--fog);
+  background: rgba(11, 11, 12, 0.7);
+  padding: 0.4rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--grey);
+  margin-top: 0.75rem;
+}
+
+.deduction-no-clues {
+  font-size: 0.55rem;
+  color: var(--orange);
+  letter-spacing: 0.12em;
+  margin-top: 0.5rem;
+  background: rgba(255, 106, 31, 0.1);
+  padding: 0.3rem;
+  border-radius: 3px;
+}
+
+.deduction-recap-strip {
+  background: rgba(11, 11, 12, 0.8);
+  border: 1px solid var(--grey);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.recap-strip-title {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  margin-bottom: 0.85rem;
+}
+
+.recap-clues-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.recap-clue-chip {
+  background: var(--charcoal);
+  border: 1px solid var(--mid-grey);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--cream);
+}
+
+.recap-clue-chip.linked {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.deduction-action-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.btn-accuse {
+  font-size: 1.1rem !important;
+  padding: 1rem 2.5rem !important;
+}
+
+.btn-accuse:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+}
+
+.accuse-hint {
+  font-family: var(--font-typewriter);
+  font-size: 0.88rem;
+  color: var(--fog);
+  margin-top: 0.75rem;
+  display: block;
+}
+
+/* Timeline Modal Styles */
+.modal-card-wide {
+  max-width: 780px !important;
+}
+
+.timeline-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-event-card {
+  display: flex;
+  gap: 1.25rem;
+  background: rgba(11, 11, 12, 0.7);
+  border: 1px solid var(--grey);
+  border-left: 3px solid var(--cyan);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.timeline-time-badge {
+  font-family: var(--font-hud);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cyan);
+  min-width: 90px;
+}
+
+.timeline-event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.timeline-event-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+
+.timeline-event-location {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+}
+
+.timeline-event-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--fog);
+  line-height: 1.45;
+}
+
+/* Solved Case Summary Archive Page */
+.summary-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--charcoal);
+  border: 1px solid var(--grey);
+  border-radius: 8px;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.solved-stamp-banner {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  border: 4px double var(--cyan);
+  color: var(--cyan);
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-gothic);
+  font-size: 2.2rem;
+  letter-spacing: 0.2em;
+  transform: rotate(-8deg);
+  box-shadow: 0 0 15px var(--cyan-glow);
+  animation: stampPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes stampPop {
+  0% { transform: scale(3) rotate(-20deg); opacity: 0; }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+
+.summary-title-block {
+  margin-bottom: 2rem;
+}
+
+.summary-code {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+}
+
+.summary-main-title {
+  font-family: var(--font-gothic);
+  font-size: 3rem;
+  color: var(--cream);
+  margin: 0.2rem 0;
+}
+
+.summary-culprit-box {
+  background: rgba(11, 11, 12, 0.85);
+  border: 1px solid var(--orange);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.culprit-label {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+}
+
+.culprit-name {
+  font-family: var(--font-gothic);
+  font-size: 2.2rem;
+  color: var(--cream);
+  margin: 0.3rem 0;
+}
+
+.culprit-text {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: var(--fog);
+  line-height: 1.6;
+}
+
+.summary-section-title {
+  font-family: var(--font-hud);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  margin: 1.5rem 0 0.85rem 0;
+  border-bottom: 1px solid var(--grey);
+  padding-bottom: 0.4rem;
+}
+
+.red-herrings-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.herring-card {
+  background: var(--black);
+  border: 1px solid var(--grey);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.herring-suspect {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.herring-detail {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--fog);
+  margin-top: 0.3rem;
+  line-height: 1.45;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* ==========================================================================
+   Hidden Sapphire Trigger & Dancing Men Cipher Easter Egg
+   ========================================================================== */
+
+.hidden-sapphire-trigger {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 12;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hidden-sapphire-icon {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 6px rgba(79, 209, 217, 0.8));
+}
+
+.hidden-sapphire-trigger:hover,
+.hidden-sapphire-trigger:focus-visible {
+  transform: scale(1.3) rotate(15deg);
+  outline: 2px solid var(--cyan) !important;
+}
+
+.cipher-instruction {
+  font-family: var(--font-typewriter);
+  font-size: 0.95rem;
+  color: var(--fog);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.cipher-symbols-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  background: rgba(11, 11, 12, 0.85);
+  padding: 1.25rem;
+  border: 1px solid var(--grey);
+  border-radius: 6px;
+}
+
+.cipher-symbol-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--charcoal);
+  border: 1px solid var(--mid-grey);
+  padding: 0.6rem 0.5rem;
+  border-radius: 4px;
+  min-width: 52px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cipher-symbol-slot:hover,
+.cipher-symbol-slot:focus-visible,
+.cipher-symbol-slot.selected {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(79, 209, 217, 0.5);
+  background: rgba(22, 24, 28, 0.95);
+}
+
+.cipher-symbol-slot.space-slot {
+  border: none;
+  background: transparent;
+  min-width: 20px;
+  cursor: default;
+}
+
+.cipher-svg-icon {
+  width: 34px;
+  height: 40px;
+  stroke: var(--cream);
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.cipher-letter-display {
+  font-family: var(--font-hud);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cyan);
+  height: 26px;
+}
+
+.cipher-keyboard-wrapper {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.keyboard-label {
+  font-family: var(--font-hud);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.cipher-alphabet-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.cipher-key-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  color: var(--cream);
+  font-family: var(--font-hud);
+  font-size: 0.9rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cipher-key-btn:hover,
+.cipher-key-btn:focus-visible {
+  border-color: var(--orange);
+  color: var(--orange);
+  outline: 2px solid var(--orange);
+}
+
+/* Irregulars' Secret Archive Screen */
+.archive-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--charcoal);
+  border: 1px solid var(--grey);
+  border-radius: 8px;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.85);
+}
+
+.archive-stamp-banner {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  border: 3px solid var(--cyan);
+  color: var(--cyan);
+  padding: 0.4rem 1.25rem;
+  font-family: var(--font-hud);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  transform: rotate(-6deg);
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.archive-header {
+  margin-bottom: 1.5rem;
+}
+
+.archive-mono-tag {
+  font-family: var(--font-hud);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.archive-main-title {
+  font-family: var(--font-gothic);
+  font-size: 3rem;
+  color: var(--cream);
+  margin: 0.3rem 0;
+}
+
+.archive-note {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  color: var(--fog);
+  line-height: 1.6;
+  border-left: 3px solid var(--orange);
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.archive-document-card {
+  background: var(--cream);
+  color: var(--black);
+  border: 1px solid #CFC7B7;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.archive-doc-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.doc-badge {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  color: #4A4D50;
+}
+
+.doc-date {
+  font-family: var(--font-hud);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+}
+
+.doc-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0B0B0C;
+  margin: 0.4rem 0;
+}
+
+.doc-content {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: #16181C;
+  line-height: 1.6;
+}
+
+.archive-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Global Focus Ring Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--orange) !important;
+  outline-offset: 2px !important;
+}
+
+/* Responsive Overrides (375px, 768px, 1366px) */
+@media (max-width: 768px) {
+  .suspect-polaroids-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .clues-paper-tray {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+  }
+  .deduction-main-title,
+  .summary-main-title,
+  .archive-main-title {
+    font-size: 2.2rem;
+  }
+  .solved-stamp-banner,
+  .archive-stamp-banner {
+    position: static;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transform: none;
+  }
+}
+
+/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .film-grain,
-  .loader-grain {
+  .evidence-string-path,
+  .polaroid-card,
+  .clue-paper-slip,
+  .animate-slip-slide,
+  .solved-stamp-banner {
     animation: none !important;
-  }
-
-  .caution-tape-strip {
-    animation: none !important;
-  }
-
-  .card-status-dot {
-    animation: none !important;
-  }
-
-  .intro-permanent-overlay {
-    animation: none !important;
-  }
-
-  .intro-grain-layer {
-    animation: none !important;
-  }
-
-  .hud-cyan-pulse {
-    animation: none !important;
-  }
-
-  .scene2-lamp-glow,
-  .scene2-lamp-core {
-    animation: none !important;
-  }
-
-  .hansom-cab-svg,
-  .sherlock-svg,
-  .smoke-trail-path,
-  .baker-lamp-aura,
-  .baker-lamp-flame,
-  .near-aura,
-  .near-flame {
-    animation: none !important;
-  }
-
-  .btn-sticker {
-    transform: rotate(0deg) !important;
     transition: none !important;
   }
-
-  .btn-sticker:hover {
-    transform: none !important;
-  }
 }
+
+
 
